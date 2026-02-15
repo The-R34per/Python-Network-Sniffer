@@ -15,19 +15,16 @@ def sniff_packets(interface, filter_protocol=None):
             dst_ip = packet[IP].dst
             protocol = packet[IP].proto
             print(f"IP Packet: {src_ip} => {dst_ip}, Protocol: {protocol}")
-            #print(GREEN + " IP Packet: " + src_ip + " => " + dst_ip + " => " + protocol + RESET)
 
         if packet.haslayer(HTTPRequest):
             method = packet[HTTPRequest].Method.decode()
             host = packet[HTTPRequest].Host.decode()
             path = packet[HTTPRequest].Path.decode()
             print(f"HTTP Request: {method} {host}{path}")
-            #print(GREEN + "HTTP Request: " + method + " " + host + " => " + path + RESET)
 
         if packet.haslayer(Raw):
             payload = packet[Raw].load[:100]
             print(f"Raw Payload: {payload}")
-            #print(GREEN + "Raw Payload: " + payload + RESET)
 
     sniff (iface=interface, prn=process_packet, filter=filter_protocol, store=False)
 
