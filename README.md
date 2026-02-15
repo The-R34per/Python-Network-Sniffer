@@ -45,6 +45,8 @@ Install Scapy:
 pip install scapy
 ```
 
+You can also download the scapy package from the repository, then extract the contents.
+
 ---
 
 ## Usage
